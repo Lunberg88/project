@@ -9,6 +9,6 @@ $this->title = 'Battle Win!';
         <h2><b>Unfortunetly, You are Lose!</b></h2>
     </div>
     <div class="body-content" align="center">
-     <a class="btn btn-lg btn-success" href="http://localhost/projectgame/frontend/web">Go Port! :(</a>
+     <a class="btn btn-lg btn-success" href="<?php echo Yii::$app->homeUrl; ?>">Go Port! :(</a>
     </div>
 </div>

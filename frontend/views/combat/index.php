@@ -13,7 +13,7 @@ use yii\bootstrap\ActiveForm;
 	<tr>
 		<td width="50%">
 		<div>
-		<img src="http://localhost/projectgame/frontend/web/img/<?php echo $usership->ship_id; ?>.png">	
+		<img src="<?php echo Yii::$app->homeUrl; ?>/img/<?php echo $usership->ship_id; ?>.png">	
 		</div>	
 		<div>
 			<b><?php echo Yii::$app->user->identity->username; ?></b> [<?php echo $session['usershiphp']; ?>]	
@@ -21,7 +21,7 @@ use yii\bootstrap\ActiveForm;
 		</td>
 		<td width="50%">
 		<div>
-		<img src="http://localhost/projectgame/frontend/web/img/<?php echo $usership->ship_id; ?>.png">	
+		<img src="<?php echo Yii::$app->homeUrl; ?>/img/<?php echo $usership->ship_id; ?>.png">	
 		</div>	
 		<div>
 			<b>BotShip</b> [<?php echo $session['bothp']; ?>]	
