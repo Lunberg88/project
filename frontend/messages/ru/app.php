@@ -24,6 +24,7 @@ return [
     'Logout' => 'Выйти',
     'Login' => 'Авторизация',
     'Signup' => 'Регистрация',
+    'Toprank' => 'Топ-игроки',
     'Hello' => 'Здравствуй',
     'Battle of WarShips!' => 'Битва Кораблей!',
     'Here is your Port of Battle Ships!' => 'Это Ваш порт!',
@@ -39,6 +40,9 @@ return [
     'Stock Tower' => 'Стоковый корпус корабля',
     'Modificate Tower' => 'Улучшеный корпус корабля',
     'There are no any WarShip\'s in Your port!' => 'У вас ещё нет ниодого корабля',
+    //Combat
+    'Battle Ship Combat Begin' => 'Великая битва кораблей началась',
+    'Top Rank users' => 'Лучшие игроки',
     //
     'Powered by {yii}' => 'Работает на {yii}',
     'Unknown alias: -{name}' => 'Неизвестный псевдоним: -{name}',

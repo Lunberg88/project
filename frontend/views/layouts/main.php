@@ -37,6 +37,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => Yii::t('app', 'Home'), 'url' => ['/site']],
         ['label' => Yii::t('app', 'Combat'), 'url' => ['/combat']],
+        ['label' => Yii::t('app', 'Toprank'), 'url' => ['/toprank']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];

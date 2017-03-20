@@ -20,7 +20,7 @@ $this->title = Yii::t('app', 'Battle of WarShips!');
  if(isset($model)) {
      echo '<h4><b>[ ' . $shipname->name . ' ]</b></h4>';
      echo '<br>';
-     echo '<img src='.Yii::$app->homeUrl.'img/' . $model->ship_id . '.png>';
+     echo '<img width=420 src='.Yii::$app->homeUrl.'img/ships/' . $shipname->name . '.png>';
      echo '<hr style=width:300px; align=left>';
      echo Yii::t('app', 'Strength').': <b>' . $model->strength . '</b> | '.Yii::t('app', 'Experience').': <b>' . $model->exp . '</b> | '.Yii::t('app', 'Credits').': <b>' . $user->credits . '</b>. <br>';
 ?>
