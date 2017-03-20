@@ -22,6 +22,8 @@ class CombatController extends Controller
         $user = User::findOne(Yii::$app->user->getId());
         //Set ship hp;
         $usership = Port::findOne(Yii::$app->user->getId());
+        //Find ship;
+        $shipname = Ship::findOne($usership->ship_id);
         //Checking if user have any ship's in his port;
         if(isset($usership)) {
             //Set session hp for player;
@@ -49,20 +51,20 @@ class CombatController extends Controller
                 echo '<hr>';
                 //Cheking for state - HP.
                 if ($session['usershiphp'] <= 0) {
-                    $this->redirect('combat/lose');
                     unset($session['usershiphp']);
                     unset($session['bothp']);
                     unset($session['battlelog_b']);
                     unset($session['battlelog_p']);
                     $user->updateCounters(['lose' => 1]);
+                    $this->redirect('combat/lose');
                 } elseif ($session['bothp'] <= 0) {
-                    $this->redirect('combat/win');
                     unset($session['usershiphp']);
                     unset($session['bothp']);
                     unset($session['battlelog_b']);
                     unset($session['battlelog_p']);
                     $usership->updateCounters(['exp' => 50]);
                     $user->updateCounters(['win' => 1]);
+                    $this->redirect('combat/win');
                 }
             }
             return $this->render('index', [
@@ -70,6 +72,7 @@ class CombatController extends Controller
                 'playerdmg' => $playerdmg,
                 'botdmg' => $botdmg,
                 'usership' => $usership,
+                'shipname' => $shipname,
             ]);
         } else {
             return $this->redirect('site/index');
