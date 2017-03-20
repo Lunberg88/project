@@ -12,7 +12,11 @@ class ToprankController extends \yii\web\Controller
     public function actionIndex()
     {
         $models = User::find()->all();
-        $userships = Port::findOne(Yii::$app->user->getId());
+        if($models) {
+            foreach ($models as $model) {
+                $userships = Port::findOne($model->id);
+            }
+        }
         $shipname = Ship::findOne($userships->ship_id);
         return $this->render('index', [
             'models' => $models,

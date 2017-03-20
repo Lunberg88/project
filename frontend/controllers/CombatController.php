@@ -19,13 +19,14 @@ class CombatController extends Controller
         $session = Yii::$app->session;
         $session->open();
         //Set user;
-        $user = User::findOne(Yii::$app->user->getId());
+        $user = User::findOne(['id' => Yii::$app->user->id]);
         //Set ship hp;
-        $usership = Port::findOne(Yii::$app->user->getId());
-        //Find ship;
-        $shipname = Ship::findOne($usership->ship_id);
+        $usership = Port::findOne(['user_id' => Yii::$app->user->id]);
+
         //Checking if user have any ship's in his port;
         if(isset($usership)) {
+            //Find ship;
+            $shipname = Ship::findOne(['id' => $usership->ship_id]);
             //Set session hp for player;
             if (!isset($session['usershiphp']) && !isset($session['bothp'])) {
                 $session['usershiphp'] = $usership->strength;

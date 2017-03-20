@@ -2,8 +2,6 @@
 
 namespace frontend\models;
 
-use Yii;
-
 /**
  * This is the model class for table "port".
  *
@@ -15,6 +13,7 @@ use Yii;
  * @property boolean $mod_gun
  * @property boolean $mod_tower
  * @property integer $strength
+ * @property integer $type
  *
  * @property User $user
  * @property Ship $ship
@@ -38,6 +37,7 @@ class Port extends \yii\db\ActiveRecord
             [['user_id', 'ship_id', 'exp', 'strength'], 'required'],
             [['user_id', 'ship_id', 'exp', 'strength'], 'integer'],
             [['stock_gun', 'stock_tower', 'mod_gun', 'mod_tower'], 'boolean'],
+            [['type'], 'integer'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['ship_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ship::className(), 'targetAttribute' => ['ship_id' => 'id']],
         ];
@@ -57,6 +57,7 @@ class Port extends \yii\db\ActiveRecord
             'mod_gun' => 'Mod Gun',
             'mod_tower' => 'Mod Tower',
             'strength' => 'Strength',
+            'type' => 'Type',
         ];
     }
 

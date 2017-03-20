@@ -3,6 +3,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+
 ?>
 <?php $form = ActiveForm::begin(['id' => 'battle-form']); ?>
 <div align="center">
@@ -31,7 +32,7 @@ use yii\bootstrap\ActiveForm;
 	<tr>
 		<td colspan="2" align="center">
 		<br><div>
-		<?= Html::submitButton(Yii::t('app', 'Attack'), ['class' => 'btn btn-primary',  'name' => 'Attack', 'id' => 'battle-form', 'value' => 'Attack', 'width' => 50]) ?>
+         <?= Html::submitButton(Yii::t('app', 'Attack'), ['class' => 'btn btn-primary',  'name' => 'Attack', 'id' => 'battle-form', 'value' => 'Attack', 'width' => 50]) ?>
 		</div>
 		</td>
 	</tr>

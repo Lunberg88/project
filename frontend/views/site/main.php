@@ -51,7 +51,39 @@ $this->title = Yii::t('app', 'Battle of WarShips!');
         }
 
        } else {
-       echo "<div align=\"center\"><h2><b>".Yii::t('app', 'There are no any WarShip\'s in Your port!')."</b></h2></div>";
+       echo "<div align=\"center\"><h2><b>".Yii::t('app', 'Please, chose your first Warship')."!</b></h2></div>";
+?>
+       <table border="0" valign="middle" width="90%">
+           <tr>
+               <td onmouseover="this.style='opacity: 1;'" onmouseout="this.style='opacity: 0.5;'" style="opacity: 0.5;">
+                   <?php $form = ActiveForm::begin(['id' => 'shipone']); ?>
+                   <div align="left">
+                       <lable>
+                           <img src="<?=Yii::$app->homeUrl; ?>img/ships/Leningrad.png?v2"><br>
+                           <h2><b><?=Yii::t('app', 'Leningrad') ?></b></h2>
+                       </lable>
+                   </div>
+                   <div align="left">
+                       <?= Html::submitButton(Yii::t('app', 'getShip'), ['class' => 'btn btn-primary', 'style' => 'width: 320px',  'name' => 'shipfirst', 'id' => 'shipone', 'value' => '2', 'width' => 50]) ?>
+                   </div>
+                   <?php ActiveForm::end(); ?>
+               </td>
+               <td align="right" onmouseover="this.style='opacity: 1;'" onmouseout="this.style='opacity: 0.5;'" style="opacity: 0.5;">
+                   <?php $form = ActiveForm::begin(['id' => 'shiptwo']); ?>
+                   <div align="right">
+                       <lable>
+                           <img src="<?=Yii::$app->homeUrl; ?>img/ships/Warspite.png?v3"><br>
+                           <h2><b><?=Yii::t('app', 'Warspite') ?></b></h2>
+                       </lable>
+                   </div>
+                   <div align="right">
+                       <?= Html::submitButton(Yii::t('app', 'getShip'), ['class' => 'btn btn-primary', 'style' => 'width: 320px', 'name' => 'shipsecond', 'id' => 'shiptwo', 'value' => '4', 'width' => 150]) ?>
+                   </div>
+                   <?php ActiveForm::end(); ?>
+               </td>
+           </tr>
+       </table>
+<?php
        }
 ?>
    </td>

@@ -39,7 +39,8 @@ return [
     'Modificate Gun' => 'Улучшеное Орудие',
     'Stock Tower' => 'Стоковый корпус корабля',
     'Modificate Tower' => 'Улучшеный корпус корабля',
-    'There are no any WarShip\'s in Your port!' => 'У вас ещё нет ниодого корабля',
+    'Please, chose your first Warship' => 'Пожалуйста, выберите Ваш новый корабль',
+    'getShip' => 'Выбрать боевой корабль',
     //Combat
     'Battle Ship Combat Begin' => 'Великая битва кораблей началась',
     'Top Rank users' => 'Лучшие игроки',

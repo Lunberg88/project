@@ -52,35 +52,6 @@ class SiteController extends Controller
             ],
         ];
     }
-/*
-public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup', 'login'],
-                'rules' => [
-                    [
-                        'actions' => ['signup', 'login'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-*/
     /**
      * @inheritdoc
      */
@@ -107,7 +78,42 @@ public function behaviors()
       if(!Yii::$app->user->isGuest) { 
         $user = User::findOne(Yii::$app->user->getId());
 
-        $model = Port::findOne(Yii::$app->user->getId());
+        //
+        if(Yii::$app->request->post('shipfirst')) {
+            $newship = new Port();
+
+            $newship->user_id = Yii::$app->user->id;
+            $newship->ship_id = 2;
+            $newship->exp = 0;
+            $newship->stock_gun = 1;
+            $newship->stock_tower = 1;
+            $newship->mod_gun = 0;
+            $newship->mod_tower = 0;
+            $newship->strength = 1600;
+            $newship->type = 2;
+
+            $newship->save();
+
+            return $this->goHome();
+        } elseif(Yii::$app->request->post('shipsecond')) {
+            $newship = new Port();
+
+            $newship->user_id = Yii::$app->user->id;
+            $newship->ship_id = 4;
+            $newship->exp = 0;
+            $newship->stock_gun = 1;
+            $newship->stock_tower = 1;
+            $newship->mod_gun = 0;
+            $newship->mod_tower = 0;
+            $newship->strength = 1600;
+            $newship->type = 3;
+
+            $newship->save();
+
+            return $this->goHome();
+        }
+
+        $model = Port::findOne(['user_id' => Yii::$app->user->id]);
         if($model) {
             $shipname = Ship::findOne($model->ship_id);
 
