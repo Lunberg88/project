@@ -35,9 +35,32 @@ $this->title = Yii::t('app', 'Battle of WarShips!');
           ?>
       </div>
    </td>
-   <td width="33%">
-  </td>
+
    <td align="left" width="33%">
+       <div>
+           <?php
+           if($avaible_mods) {
+               echo "<h2><b>".Yii::t('app', 'Available Mods')."</b></h2><hr>";
+               if($avaible_mods->mod_gun == 1 && $avaible_mods->mod_tower == 1) {
+                   if($exp_mod_gun == 1) {
+                       $form = ActiveForm::begin(['id' => 'exp_mod_gun']);
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png'> - <b>" . Yii::t('app', 'Modified Main Battery') . "</b>  ".Html::submitButton(Yii::t('app', 'Explore'), ['class' => 'btn btn-lg btn-success', 'style' => 'width: 140px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'expmodgun', 'id' => 'exp_mod_gun', 'value' => 'Explore']);
+                       ActiveForm::end();
+                   } else {
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png' style='opacity: 0.5;'> - <b>" . Yii::t('app', 'Modified Main Battery') . " NO</b><br>";
+                   }
+                   if($exp_mod_tower == 1) {
+                       $form = ActiveForm::begin(['id' => 'exp_mod_tower']);
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . "</b>  ".Html::submitButton(Yii::t('app', 'Explore'), ['class' => 'btn btn-lg btn-success', 'style' => 'width: 140px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'expmodtower', 'id' => 'exp_mod_tower', 'value' => 'Explore']);
+                       ActiveForm::end();
+                       } else {
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png' style='opacity: 0.5;'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . " NO</b><br>";
+                   }
+               }
+          }
+           ?>
+       </div>
+       <br><br>
    <?php
  if($model->stock_gun == 1 && $model->mod_gun == 0) {
         echo '<h3><b>'.Yii::t('app', 'Stock Gun').'</b></h3> - <img src='.Yii::$app->homeUrl.'img/stock_gun.png>';

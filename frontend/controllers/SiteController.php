@@ -15,6 +15,7 @@ use frontend\models\ContactForm;
 use frontend\models\Port;
 use frontend\models\Ship;
 use common\models\User;
+use frontend\models\Mods;
 
 /**
  * Site controller
@@ -115,12 +116,23 @@ class SiteController extends Controller
 
         $model = Port::findOne(['user_id' => Yii::$app->user->id]);
         if($model) {
-            $shipname = Ship::findOne($model->ship_id);
+            $shipname = Ship::findOne(['id' => $model->ship_id]);
 
+            $avaible_mods = Mods::findOne(['ship_id' => $model->ship_id]);
+            $exp_mod_gun = $model->exp_gun;
+            $exp_mod_tower = $model->exp_tower;
+/*
+            if(Yii::$app->request->post('expmodgun')) {
+
+            }
+*/
             return $this->render('main', [
                 'model' => $model,
                 'shipname' => $shipname,
                 'user' => $user,
+                'avaible_mods' => $avaible_mods,
+                'exp_mod_gun' => $exp_mod_gun,
+                'exp_mod_tower' => $exp_mod_tower,
             ]);
         } else {
             return $this->render('main', [

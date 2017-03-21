@@ -30,8 +30,8 @@ class ToprankController extends \yii\web\Controller
     {
         $userships = Port::find()
         ->select('*')
-        ->InnerJoin('ship', 'port.ship_id = ship.id')
-        ->LeftJoin('user', 'port.user_id = user.id')
+        ->innerJoin('ship', 'port.ship_id = ship.id')
+        ->leftJoin('user', 'port.user_id = user.id')
         ->with('ship', 'user')
         ->all();
 

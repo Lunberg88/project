@@ -41,6 +41,10 @@ return [
     'Modificate Tower' => 'Улучшеный корпус корабля',
     'Please, chose your first Warship' => 'Пожалуйста, выберите Ваш новый корабль',
     'getShip' => 'Выбрать боевой корабль',
+    'Available Mods' => 'Доступные моды',
+    'Improved Hit Points(HP)' => 'Улучшеный корпус корабля',
+    'Modified Main Battery' => 'Модифицирован Главный-Калибр',
+    'Explore' => 'Исследовать',
     //Combat
     'Battle Ship Combat Begin' => 'Великая битва кораблей началась',
     'Top Rank users' => 'Лучшие игроки',
