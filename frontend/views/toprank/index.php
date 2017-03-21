@@ -5,14 +5,11 @@
 <br>
 <p>
     <?php
-     if($models) {
-         if($userships) {
-             echo '<table border=\'0\' align=\'left\'>';
-             foreach ($models as $model) {
-                 echo '<tr><td><b>' . $model->username . '</b></td><td><b>' . Yii::t('app', 'WIN') . ':</b> ' . $model->win . '<br>Ships -'.$shipname->name.' <img width="140" src="'.Yii::$app->homeUrl.'/img/ships/'.$shipname->name.'"></td></tr>';
-             }
-         }
-       echo '</table>';
-     }
+    foreach ($userships as $ships) {
+        echo $ships->user_id.'<br>';
+        echo $ships->ship_id.'<br>';
+        echo $ships->name.'<br>';
+        echo $ships->exp.'<br><hr>';
+    }
     ?>
 </p>

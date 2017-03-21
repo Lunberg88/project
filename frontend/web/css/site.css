@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+   /* background: url('http://localhost/advanced/frontend/web/img/projectgame_bg.jpg') no-repeat; */
 }
 
 .wrap {
