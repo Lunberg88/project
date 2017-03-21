@@ -45,6 +45,8 @@ return [
     'Improved Hit Points(HP)' => 'Улучшеный корпус корабля',
     'Modified Main Battery' => 'Модифицирован Главный-Калибр',
     'Explore' => 'Исследовать',
+    'Installed modules' => 'Установленные модули',
+    'Buy' => 'Купить',
     //Combat
     'Battle Ship Combat Begin' => 'Великая битва кораблей началась',
     'Top Rank users' => 'Лучшие игроки',

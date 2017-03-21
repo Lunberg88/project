@@ -119,20 +119,47 @@ class SiteController extends Controller
             $shipname = Ship::findOne(['id' => $model->ship_id]);
 
             $avaible_mods = Mods::findOne(['ship_id' => $model->ship_id]);
-            $exp_mod_gun = $model->exp_gun;
-            $exp_mod_tower = $model->exp_tower;
-/*
-            if(Yii::$app->request->post('expmodgun')) {
 
+
+            if(Yii::$app->request->post('expmodgun')) {
+                $model->updateCounters(['exp' => -($avaible_mods->exp_gun)]);
+                $model->updateCounters(['exp_gun' => 1]);
+
+                $this->goHome();
             }
-*/
+            if(Yii::$app->request->post('expmodtower')) {
+                $model->updateCounters(['exp' => -($avaible_mods->exp_tower)]);
+                $model->updateCounters(['exp_tower' => 1]);
+
+                $this->goHome();
+            }
+
+            if(Yii::$app->request->post('buymodgun')) {
+                if(($user->credits) >= ($avaible_mods->cost_gun)) {
+                    $user->updateCounters(['credits' => -($avaible_mods->cost_gun)]);
+                    $model->updateCounters(['mod_gun' => 1]);
+                    $model->updateCounters(['stock_gun' => -1]);
+
+                    $this->goHome();
+                }
+            }
+            if(Yii::$app->request->post('buymodtower')) {
+                if(($user->credits) >= ($avaible_mods->cost_tower)) {
+                    $user->updateCounters(['credits' => -($avaible_mods->cost_tower)]);
+                    $model->updateCounters(['mod_tower' => 1]);
+                    $model->updateCounters(['stock_tower' => -1]);
+                    $model->updateCounters(['strength' => +500]);
+
+                    $this->goHome();
+                }
+            }
+
+
             return $this->render('main', [
                 'model' => $model,
                 'shipname' => $shipname,
                 'user' => $user,
                 'avaible_mods' => $avaible_mods,
-                'exp_mod_gun' => $exp_mod_gun,
-                'exp_mod_tower' => $exp_mod_tower,
             ]);
         } else {
             return $this->render('main', [

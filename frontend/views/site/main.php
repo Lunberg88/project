@@ -36,41 +36,64 @@ $this->title = Yii::t('app', 'Battle of WarShips!');
       </div>
    </td>
 
-   <td align="left" width="33%">
+   <td width="33%">
        <div>
            <?php
            if($avaible_mods) {
-               echo "<h2><b>".Yii::t('app', 'Available Mods')."</b></h2><hr>";
-               if($avaible_mods->mod_gun == 1 && $avaible_mods->mod_tower == 1) {
-                   if($exp_mod_gun == 1) {
+               echo "<h2><b>" . Yii::t('app', 'Available Mods') . "</b></h2><hr>";
+               if (($model->exp_gun) != 1) {
+                   if (($model->exp) >= ($avaible_mods->exp_gun)) {
                        $form = ActiveForm::begin(['id' => 'exp_mod_gun']);
-                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png'> - <b>" . Yii::t('app', 'Modified Main Battery') . "</b>  ".Html::submitButton(Yii::t('app', 'Explore'), ['class' => 'btn btn-lg btn-success', 'style' => 'width: 140px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'expmodgun', 'id' => 'exp_mod_gun', 'value' => 'Explore']);
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png'> - <b>" . Yii::t('app', 'Modified Main Battery') . "</b>  " . Html::submitButton(Yii::t('app', 'Explore'), ['class' => 'btn btn-lg btn-success', 'style' => 'width: 140px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'expmodgun', 'id' => 'exp_mod_gun', 'value' => 'Explore']);
                        ActiveForm::end();
                    } else {
-                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png' style='opacity: 0.5;'> - <b>" . Yii::t('app', 'Modified Main Battery') . " NO</b><br>";
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png' style='opacity: 0.5;'> - <b>" . Yii::t('app', 'Modified Main Battery') . "</b>";
                    }
-                   if($exp_mod_tower == 1) {
-                       $form = ActiveForm::begin(['id' => 'exp_mod_tower']);
-                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . "</b>  ".Html::submitButton(Yii::t('app', 'Explore'), ['class' => 'btn btn-lg btn-success', 'style' => 'width: 140px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'expmodtower', 'id' => 'exp_mod_tower', 'value' => 'Explore']);
+               } else {
+                   if (($model->mod_gun) != 1) {
+                       $form = ActiveForm::begin(['id' => 'buy_mod_gun']);
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png'> - <b>" . Yii::t('app', 'Modified Main Battery') . " - Already explored</b> ".Html::submitButton(Yii::t('app', 'Buy'), ['class' => 'btn btn-primary', 'style' => 'width: 70px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'buymodgun', 'id' => 'buy_mod_gun', 'value' => 'Buy']);
                        ActiveForm::end();
-                       } else {
-                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png' style='opacity: 0.5;'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . " NO</b><br>";
+                   } else {
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_gun.png'> - <b>" . Yii::t('app', 'Modified Main Battery') . " - Installed</b>  ";
                    }
                }
-          }
+               echo "<br>";
+               if (($model->exp_tower) != 1) {
+                   if (($model->exp) >= ($avaible_mods->exp_tower)) {
+                       $form = ActiveForm::begin(['id' => 'exp_mod_tower']);
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . "</b>  " . Html::submitButton(Yii::t('app', 'Explore'), ['class' => 'btn btn-lg btn-success', 'style' => 'width: 140px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'expmodtower', 'id' => 'exp_mod_tower', 'value' => 'Explore']);
+                       ActiveForm::end();
+                   } else {
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png' style='opacity: 0.5;'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . "</b>";
+                   }
+               } else {
+                   if(($model->mod_tower) != 1) {
+                       $form = ActiveForm::begin(['id' => 'buy_mod_tower']);
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . " - Already explored</b> ".Html::submitButton(Yii::t('app', 'Buy'), ['class' => 'btn btn-primary', 'style' => 'width: 70px; height: 25px; padding: 0px 3px 1px 3px', 'name' => 'buymodtower', 'id' => 'buy_mod_tower', 'value' => 'Buy']);
+                       ActiveForm::end();
+                   } else {
+                       echo "<img src='" . Yii::$app->homeUrl . "img/mod_tower.png'> - <b>" . Yii::t('app', 'Improved Hit Points(HP)') . " Installed</b>";
+                   }
+               }
+           }
            ?>
        </div>
-       <br><br>
+       <br><br><br><br>
+       <div>
+           <h2><b><?=Yii::t('app', 'Installed modules') ?></b></h2>
+       </div>
+       <hr>
    <?php
  if($model->stock_gun == 1 && $model->mod_gun == 0) {
-        echo '<h3><b>'.Yii::t('app', 'Stock Gun').'</b></h3> - <img src='.Yii::$app->homeUrl.'img/stock_gun.png>';
+        echo '<b>'.Yii::t('app', 'Stock Gun').'</b> - <img src='.Yii::$app->homeUrl.'img/stock_gun.png>';
         } elseif($model->stock_gun == 0 && $model->mod_gun == 1) {
-                 echo '<h3><b>'.Yii::t('app', 'Modificate Gun').'</b></h3> - <img src='.Yii::$app->homeUrl.'img/mod_gun.png>';
+                 echo '<b>'.Yii::t('app', 'Modificate Gun').'</b> - <img src='.Yii::$app->homeUrl.'img/mod_gun.png>';
         }
      if($model->stock_tower == 1 && $model->mod_tower == 0) {
-        echo '<h3><b>'.Yii::t('app', 'Stock Tower').'</b></h3> - <img src='.Yii::$app->homeUrl.'img/stock_tower.png>';
+        echo '<b>'.Yii::t('app', 'Stock Tower').'</b> - <img src='.Yii::$app->homeUrl.'img/stock_tower.png>';
         } elseif($model->stock_tower == 0 && $model->mod_tower == 1) {
-                 echo '<h3><b>'.Yii::t('app', 'Modificate Tower').'</b></h3> - <img src='.Yii::$app->homeUrl.'img/mod_tower.png>';
+                 echo '<b>'.Yii::t('app', 'Modificate Tower').'</b> - <img src='.Yii::$app->homeUrl.'img/mod_tower.png>';
         }
 
        } else {
