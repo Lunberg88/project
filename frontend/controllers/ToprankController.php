@@ -6,6 +6,7 @@ use Yii;
 use common\models\User;
 use frontend\models\Port;
 use frontend\models\Ship;
+use yii\db\ActiveQuery;
 
 class ToprankController extends \yii\web\Controller
 {
@@ -28,20 +29,24 @@ class ToprankController extends \yii\web\Controller
 */
     public function actionIndex()
     {
+        /*
         $userships = Port::find()
         ->select('*')
-        ->innerJoin('ship', 'port.ship_id = ship.id')
-        ->leftJoin('user', 'port.user_id = user.id')
-        ->with('ship', 'user')
+        ->innerJoin('user', 'port.id = user.id')
+//        ->leftJoin('user', 'port.user_id = user.id')
+//        ->with('port')
         ->all();
-
+*/
         /*
         echo  '<pre>'.print_r($userships,1).'</pre>';
         exit();
         */
+ $userships = Port::find()
+     ->joinWith('user')
+     ->all();
 
-
-
+echo '<pre>'.print_r($userships,1).'</pre>';
+exit();
         return $this->render('index', [
            'userships' => $userships,
         ]);

@@ -6,10 +6,10 @@
 <p>
     <?php
     foreach ($userships as $ships) {
-        echo $ships->user_id.'<br>';
-        echo $ships->ship_id.'<br>';
-        echo $ships->name.'<br>';
-        echo $ships->exp.'<br><hr>';
+     //   echo $ships->user_id.'<br>';
+     //   echo $ships->ship_id.'<br>';
+      echo $ships->ship_id.'<br>';
+        echo $ships->username.'<br><hr>';
     }
     ?>
 </p>
