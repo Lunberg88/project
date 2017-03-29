@@ -65,6 +65,7 @@ AppAsset::register($this);
 
     <div class="container">
 
+
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -75,7 +76,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; GeekHub 2016-<?= date('Y') ?></p>
+        <p class="pull-left"><b>&copy; GeekHub 2016-<?= date('Y') ?></b></p>
 
         <p class="pull-right"><?= $this->render('main/select-language') ?> | <?= Yii::powered() ?></p>
     </div>

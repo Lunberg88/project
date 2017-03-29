@@ -19,7 +19,7 @@ $this->title = Yii::t('app', 'Battle of WarShips!');
 <?php
  if(isset($model)) {
      echo '<h4><b>[ ' . $shipname->name . ' ]</b></h4>';
-     echo '<br>';
+     echo '<div align="center" style="width:350px;"><div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100% HP</div></div></div>';
      echo '<img width=420 src='.Yii::$app->homeUrl.'img/ships/' . $shipname->name . '.png>';
      echo '<hr style=width:300px; align=left>';
      echo Yii::t('app', 'Strength').': <b>' . $model->strength . '</b> | '.Yii::t('app', 'Experience').': <b>' . $model->exp . '</b> | '.Yii::t('app', 'Credits').': <b>' . $user->credits . '</b>. <br>';

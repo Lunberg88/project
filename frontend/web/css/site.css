@@ -15,6 +15,18 @@ body {
     padding: 70px 15px 20px;
 }
 
+.toprank {
+    font-weight: bold;
+    padding: 3px 4px;
+    text-align: left;
+}
+.toprank td {
+    padding: 4px 10px;
+}
+.toph {
+    border-bottom:3px solid lightblue;
+}
+
 .footer {
     height: 60px;
     background-color: #f5f5f5;

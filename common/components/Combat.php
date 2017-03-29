@@ -20,6 +20,11 @@ class Combat extends Object
       $session->open();
       $user = User::findOne(['id' => Yii::$app->user->id]);
       $usership = Port::findOne(['user_id' => Yii::$app->user->id]);
+
+      //Set battle_id for player;
+      $battle_id = date('dhms');
+      $user->updateCounters(['battle_id' => $battle_id]);
+
       //Set session hp for player;
       if (!isset($session['usershiphp']) && !isset($session['bothp'])) {
           $session['usershiphp'] = $usership->strength;
@@ -52,6 +57,7 @@ class Combat extends Object
               unset($session['battlelog_b']);
               unset($session['battlelog_p']);
               $user->updateCounters(['lose' => 1]);
+              $user->updateAll(['battle_id' => 0], ['id' => Yii::$app->user->id]);
               Controller::redirect('combat/lose');
           } elseif ($session['bothp'] <= 0) {
               unset($session['usershiphp']);
@@ -61,6 +67,7 @@ class Combat extends Object
               $usership->updateCounters(['exp' => $this->expirence($usership->ship_id)]);
               $user->updateCounters(['win' => 1]);
               $user->updateCounters(['credits' => +($this->giveMoney())]);
+              $user->updateAll(['battle_id' => 0], ['id' => Yii::$app->user->id]);
               Controller::redirect('combat/win');
           }
       }
