@@ -50,6 +50,7 @@ return [
     //Combat
     'Battle Ship Combat Begin' => 'Великая битва кораблей началась',
     'Top Rank users' => 'Лучшие игроки',
+    'Battle Shop' => 'Магазин кораблей',
     //
     'Powered by {yii}' => 'Работает на {yii}',
     'Unknown alias: -{name}' => 'Неизвестный псевдоним: -{name}',

@@ -1,7 +1,33 @@
 html,
 body {
     height: 100%;
-   /* background: url('http://localhost/advanced/frontend/web/img/projectgame_bg.jpg') no-repeat; */
+    background: url('../img/bg.jpg');
+}
+
+l-separator{
+    width:100%;
+    padding:0;
+    z-index:-1;
+}
+
+l-separator__header{
+    position:absolute;
+    margin:0;
+    left:0;
+    bottom:-33px;
+}
+
+.b-separator{
+    background:url('../img/separator.png') no-repeat scroll 0 0;
+}
+
+.b-separator-right{
+    background:url('../img/separator_1.png') no-repeat scroll 100% 0 transparent;
+    height:81px;
+    width:349px;
+    float:right;
+    margin-right:-349px;
+    position:relative;
 }
 
 .wrap {
@@ -23,8 +49,27 @@ body {
 .toprank td {
     padding: 4px 10px;
 }
+
 .toph {
     border-bottom:3px solid lightblue;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
 }
 
 .footer {
@@ -62,11 +107,11 @@ a.asc:after, a.desc:after {
 }
 
 a.asc:after {
-    content: "\e151";
+    content: /*"\e113"*/ "\e151";
 }
 
 a.desc:after {
-    content: "\e152";
+    content: /*"\e114"*/ "\e152";
 }
 
 .sort-numerical a.asc:after {
@@ -85,13 +130,8 @@ a.desc:after {
     content: "\e156";
 }
 
-.grid-view td {
+.grid-view th {
     white-space: nowrap;
-}
-
-.grid-view .filters input,
-.grid-view .filters select {
-    min-width: 50px;
 }
 
 .hint-block {
@@ -130,4 +170,134 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.CodeMirror {
+    border: 1px solid #eee;
+}
+
+.project-card {
+    padding: 2rem;
+    background: rgba(128, 128, 128, .1);
+    position: relative;
+    margin: 0 1rem 1rem 0;
+}
+
+.featured {
+    color: #ffcc4b;
+}
+
+.label.status-deleted {
+    background: rgba(200, 10, 10, .5);
+}
+
+.label.status-draft {
+    background: rgba(10, 10, 200, .8);
+}
+
+.project-card {
+    display: inline-block;
+}
+
+.project-card img {
+    border: 2px solid transparent;
+}
+
+.project-card.status-deleted img {
+    border: 2px solid rgba(200, 10, 10, .5);
+}
+
+.project-card.status-draft img {
+    border: 2px solid rgba(10, 10, 200, .5);
+}
+
+.project-card img {
+    background: rgba(128, 128, 128, .1);
+}
+
+.project-card h1 {
+    font-size: large;
+}
+
+.authors {
+    list-style: none;
+    padding: 0;
+}
+
+.authors li {
+    display: inline-block;
+}
+
+.author img {
+    border-radius: 32px;
+}
+
+.tags {
+    list-style: none;
+    padding: 0;
+}
+
+.tags li {
+    display: inline-block;
+    padding: .5rem;
+    background: #eedc43;
+    border-radius: .25em;
+}
+
+.project-view .content {
+    margin: 4rem 0 1rem 0;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.project-view .images {
+    margin-top: 2rem;
+}
+
+.project-view .image a {
+    display: inline-block;
+    padding: 2rem;
+    background: rgba(128, 128, 128, .1);
+}
+
+.project-view .image {
+    position: relative;
+    display: inline-block;
+}
+
+.project-view .image .delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 150%;
+    background: #fff;
+    border-radius: 10rem;
+    cursor: pointer;
+}
+
+.project-view .image .delete:hover {
+    color: #f00;
+}
+
+.projects-flow {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-content: space-around;
+    align-items: flex-start;
+}
+
+.projects-flow .item {
+    min-width: 25em;
+    margin: 1em;
+    flex: 1 0 0;
+}
+
+.pagination {
+    width: 100%;
+}
+
+.row_b {
+    padding: 6px;
+    border:1px solid #0d3349;
 }

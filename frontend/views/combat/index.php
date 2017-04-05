@@ -1,13 +1,13 @@
 <?php
 /* @var $this yii\web\View */
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use \yii\helpers\Html;
+use \yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('app', 'Battle of WarShips!');
 
-$curhpplayer = ($session['usershiphp'] / $usership->strength)*100;
-$curhpbot = ($session['bothp'] / $usership->strength)*100;
+$curhpplayer = ceil(($session['usershiphp'] / $usership->strength)*100);
+$curhpbot = ceil(($session['bothp'] / $usership->strength)*100);
 ?>
 <?php $form = ActiveForm::begin(['id' => 'battle-form']); ?>
 <div align="center">

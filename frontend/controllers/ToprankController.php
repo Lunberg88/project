@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Port;
+use common\models\Port;
 
 class ToprankController extends \yii\web\Controller
 {

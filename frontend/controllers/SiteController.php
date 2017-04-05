@@ -12,10 +12,10 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use frontend\models\Port;
-use frontend\models\Ship;
+use common\models\Port;
+use common\models\Ship;
 use common\models\User;
-use frontend\models\Mods;
+use common\models\Mods;
 
 /**
  * Site controller

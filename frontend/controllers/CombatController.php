@@ -4,8 +4,8 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\User;
-use frontend\models\Ship;
-use frontend\models\Port;
+use common\models\Ship;
+use common\models\Port;
 use yii\web\Controller;
 
 class CombatController extends Controller

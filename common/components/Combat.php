@@ -3,7 +3,7 @@
 namespace common\components;
 
 use yii\base\Object;
-use frontend\models\Port;
+use common\models\Port;
 use common\models\User;
 use yii\web\Controller;
 use Yii;
