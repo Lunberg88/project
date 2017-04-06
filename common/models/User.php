@@ -20,6 +20,12 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property integer $win
+ * @property integer $lose
+ * @property integer $draw
+ * @property integer $credits
+ *
+ * @property Port[] $ports
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -185,5 +191,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPorts()
+    {
+        return $this->hasMany(Port::className(), ['user_id' => 'id']);
     }
 }
