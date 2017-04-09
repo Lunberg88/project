@@ -36,7 +36,18 @@ $curhpbot = ceil(($session['bothp'] / $usership->strength)*100);
 		</div>	
 
 		</td>
-        <td width="30%"></td>
+        <td width="30%" align="center">
+            <div align="center">
+                <div align="left">
+                <?php $form = ActiveForm::begin(['id' => 'my-test']); ?>
+                    <div class="radio radio-danger"><?= Html::radio('shot', false, ['value' => '1', 'id' => 'radio1']); ?><?= Html::label('Выстрелить в пункт управления', 'radio1', false) ?></div>
+                    <div class="radio radio-danger"><?= Html::radio('shot', false, ['value' => '2', 'id' => 'radio2']); ?><?= Html::label('Выстрелить в нос', 'radio2', false) ?></div>
+                    <div class="radio radio-danger"><?= Html::radio('shot', false, ['value' => '3', 'id' => 'radio3']); ?><?= Html::label('Выстрелить в корму', 'radio3', false) ?></div>
+                    <div class="radio radio-danger"><?= Html::radio('shot', false, ['value' => '4', 'id' => 'radio4']); ?><?= Html::label('Выстрелить в борт', 'radio4', false) ?></div>
+                <?php ActiveForm::end(); ?>
+                </div>
+            </div>
+        </td>
 		<td width="35%" align="right">
             <div>
                 <b>BotShip</b> [<?php echo $session['bothp']; ?>/<?php echo $usership->strength ?>] <br>
@@ -68,8 +79,7 @@ $curhpbot = ceil(($session['bothp'] / $usership->strength)*100);
         <tr>
              <td colspan="2">
 <?php
-echo $session['battlelog_b'].'<br>';
-echo $session['battlelog_p'].'<br>';
+echo $session['battlelog'].'<br>';
 ?>
              </td>
         </tr>

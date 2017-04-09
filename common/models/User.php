@@ -24,7 +24,9 @@ use yii\web\IdentityInterface;
  * @property integer $lose
  * @property integer $draw
  * @property integer $credits
+ * @property integer $battle_id
  *
+ * @property Battles[] $battles
  * @property Port[] $ports
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -199,5 +201,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function getPorts()
     {
         return $this->hasMany(Port::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBattles()
+    {
+        return $this->hasMany(Battles::className(), ['creator_id' => 'id']);
     }
 }

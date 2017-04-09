@@ -6,3 +6,6 @@
 </p>
  </div>
 </div>
+<div style="float: right; position: inherit">
+    <b>Уровень:  <?php echo $model->lvl ?></b>
+</div>
