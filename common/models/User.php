@@ -28,6 +28,7 @@ use yii\web\IdentityInterface;
  *
  * @property Battles[] $battles
  * @property Port[] $ports
+ * @property UserItems[] $userItems
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -209,5 +210,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function getBattles()
     {
         return $this->hasMany(Battles::className(), ['creator_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserItems()
+    {
+        return $this->hasMany(UserItems::className(), ['user_id' => 'id']);
     }
 }

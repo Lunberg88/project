@@ -34,7 +34,15 @@ $curhpbot = ceil(($session['bothp'] / $usership->strength)*100);
 		<div align=""left">
 		<img width="420" src="<?php echo Yii::$app->homeUrl; ?>img/ships/<?php echo $shipname->name; ?>.png" align="left">
 		</div>	
-
+        <div>
+            <h4><b>Items:</b></h4><hr>
+            <?php
+            if($user_items) {
+                echo $user_items->hp.' +HP ['.$user_items->qnt.']<br>';
+            echo Html::submitButton(Yii::t('app', 'getHP'), ['class' => 'btn btn-primary', 'name' => 'gethp', 'value' => 'gethp']);
+            }
+            ?>
+        </div>
 		</td>
         <td width="30%" align="center">
             <div align="center">
@@ -79,7 +87,7 @@ $curhpbot = ceil(($session['bothp'] / $usership->strength)*100);
         <tr>
              <td colspan="2">
 <?php
-echo $session['battlelog'].'<br>';
+echo $battle_log->logs.'<br>';
 ?>
              </td>
         </tr>

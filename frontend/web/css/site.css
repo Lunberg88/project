@@ -418,3 +418,21 @@ a.desc:after {
 .radio-success input[type="radio"]:checked + label::after {
     background-color: #5cb85c;
 }
+
+.btn-outlined {
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid #428bca;
+    color: #428bca;
+}
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: #428bca;
+    border-color: #428bca;
+}
