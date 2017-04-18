@@ -87,7 +87,9 @@ $curhpbot = ceil(($session['bothp'] / $usership->strength)*100);
         <tr>
              <td colspan="2">
 <?php
-echo $battle_log->logs.'<br>';
+if($battle_log) {
+    echo $battle_log->logs . '<br>';
+}
 ?>
              </td>
         </tr>

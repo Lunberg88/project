@@ -32,15 +32,13 @@ class CombatController extends Controller
         $battle_log = Battles::findOne(['bid' => $session['battle_id']]);
 
         if (!isset($session['usershiphp']) && !isset($session['bothp'])) {
-              $session['usershiphp'] = $usership->strength;
-              $session['bothp'] = $usership->strength;
+            $session['usershiphp'] = $usership->strength;
+            $session['bothp'] = $usership->strength;
         }
-
         if(Yii::$app->request->post('Attack')) {
             if(Yii::$app->request->post('shot')) {
                 $shottype = Yii::$app->request->post('shot');
-
-                Yii::$app->Combat->combat($session['usershiphp'], $session['bothp'], $shottype, $usership, $user, $session['battle_id']);
+                Yii::$app->Combat->combat($shottype, $usership, $user, $session['battle_id'], $battle_log);
 
             }
         }

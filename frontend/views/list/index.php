@@ -7,9 +7,6 @@ use \yii\bootstrap\ActiveForm;
 <h1><b><?=Yii::t('app', 'Go Battle') ?></b>!</h1>
 </div>
 <p>
-    <?php
-    echo 'battle id: ['.$user->battle_id.']<br>';
-    ?>
     <?php $form = ActiveForm::begin(['id' => 'battle-form']); ?>
     <?= Html::submitButton(Yii::t('app', 'Start battle'), ['class' => 'btn btn-outlined btn-primary', 'name' => 'start', 'id' => 'start-battle', 'value' => 'Start']) ?>
     <?php ActiveForm::end(); ?>

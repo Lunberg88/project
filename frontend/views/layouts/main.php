@@ -35,10 +35,9 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => Yii::t('app', 'Home'), 'url' => ['/site']],
-        ['label' => Yii::t('app', 'Combat'), 'url' => ['/combat']],
+        ['label' => Yii::t('app', 'Reg Battle'), 'url' => ['/list']],
         ['label' => Yii::t('app', 'Toprank'), 'url' => ['/toprank']],
         ['label' => Yii::t('app', 'Shop'), 'url' => ['/shop']],
-        ['label' => Yii::t('app', 'Reg Battle'), 'url' => ['/list']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];

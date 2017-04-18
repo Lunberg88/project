@@ -2,10 +2,10 @@
 
 namespace common\components;
 
-use yii\base\Object;
-use common\models\Battles;
-use yii\web\Controller;
 use Yii;
+use yii\base\Object;
+use yii\web\Controller;
+use common\models\Battles;
 
 class Combat extends Object
 {
@@ -13,8 +13,15 @@ class Combat extends Object
 
   public $credits;
 
-  public function combat($userhp, $bothp, $type, $ship, $player, $battleid)
+  public function combat($type, $ship, $player, $battleid, $bid)
   {
+      $session = Yii::$app->session;
+      $session->open();
+      if (!isset($session['usershiphp']) && !isset($session['bothp'])) {
+          $session['usershiphp'] = $ship->strength;
+          $session['bothp'] = $ship->strength;
+      }
+
       $playerdmg = $this->dmgPlayer($ship->ship_id, $ship->mod_gun);
       $botdmg = $this->dmgBot($ship->ship_id);
 
@@ -26,22 +33,22 @@ class Combat extends Object
               } else {
                   $adddmg = (($ship->strength)*0.1);
               }
-              $bothp = $bothp - ceil(($this->shipTypePlayer($ship->type, $playerdmg) + $adddmg));
-              $userhp = $userhp - ceil(($this->shipTypeBot($ship->type, $botdmg) + $adddmg));
+              $session['bothp'] = $session['bothp'] - ceil(($this->shipTypePlayer($ship->type, $playerdmg) + $adddmg));
+              $session['usershiphp'] = $session['usershiphp'] - ceil(($this->shipTypeBot($ship->type, $botdmg) + $adddmg));
               $log = Yii::t('app', 'You attacked the bot warship on -').'<b>'.ceil(($this->shipTypePlayer($ship->type, $playerdmg) + $adddmg)).'</b><br>';
               $log .= Yii::t('app', 'Our warship were attacked by bot warship on -').'<b>'.ceil(($this->shipTypeBot($ship->type, $botdmg) + $adddmg)).'</b>';
               break;
           case 2:
               $adddmg = (($ship->strength)*0.1);
-              $bothp = $bothp - ceil(($this->shipTypePlayer($ship->strength, $playerdmg) + $adddmg));
-              $userhp = $userhp - ceil(($this->shipTypeBot($ship->strength, $botdmg) + $adddmg));
+              $session['bothp'] = $session['bothp'] - ceil(($this->shipTypePlayer($ship->strength, $playerdmg) + $adddmg));
+              $session['usershiphp'] = $session['usershiphp'] - ceil(($this->shipTypeBot($ship->strength, $botdmg) + $adddmg));
               $log = Yii::t('app', 'You attacked the bot warship on -').'<b>'.ceil(($this->shipTypePlayer($ship->type, $playerdmg) + $adddmg)).'</b><br>';
               $log .= Yii::t('app', 'Our warship were attacked by bot warship on -').'<b>'.ceil(($this->shipTypeBot($ship->type, $botdmg) + $adddmg)).'</b>';
               break;
           case 3:
               $adddmg = (($ship->strength)*0.1);
-              $bothp = $bothp - ceil(($this->shipTypePlayer($ship->strength, $playerdmg) + $adddmg));
-              $userhp = $userhp - ceil(($this->shipTypeBot($ship->strength, $botdmg) + $adddmg));
+              $session['bothp'] = $session['bothp'] - ceil(($this->shipTypePlayer($ship->strength, $playerdmg) + $adddmg));
+              $session['usershiphp'] = $session['usershiphp'] - ceil(($this->shipTypeBot($ship->strength, $botdmg) + $adddmg));
               $log = Yii::t('app', 'You attacked the bot warship on -').'<b>'.ceil(($this->shipTypePlayer($ship->type, $playerdmg) + $adddmg)).'</b><br>';
               $log .= Yii::t('app', 'Our warship were attacked by bot warship on -').'<b>'.ceil(($this->shipTypeBot($ship->type, $botdmg) + $adddmg)).'</b>';
               break;
@@ -52,29 +59,29 @@ class Combat extends Object
               } else {
                   $adddmg = ceil(($ship->strength)*0.1);
               }
-              $bothp = $bothp - ceil(($this->shipTypePlayer($ship->strength, $playerdmg) + $adddmg));
-              $userhp = $userhp - ceil(($this->shipTypeBot($ship->strength, $botdmg) + $adddmg));
+              $session['bothp'] = $session['bothp'] - ceil(($this->shipTypePlayer($ship->strength, $playerdmg) + $adddmg));
+              $session['usershiphp'] = $session['usershiphp'] - ceil(($this->shipTypeBot($ship->strength, $botdmg) + $adddmg));
               $log = Yii::t('app', 'You attacked the bot warship on -').'<b>'.ceil(($this->shipTypePlayer($ship->type, $playerdmg) + $adddmg)).'</b><br>';
               $log .= Yii::t('app', 'Our warship were attacked by bot warship on -').'<b>'.ceil(($this->shipTypeBot($ship->type, $botdmg) + $adddmg)).'</b>';
               break;
       }
-      $this->writeLog($battleid, $log);
-      echo '<hr>';
-
+      $this->writeLog($bid->bid, $log);
       /*
        * Cheking for state - HP;
        */
-      if ($userhp <= 0) {
-          unset($userhp);
-          unset($bothp);
+      if ($session['usershiphp'] <= 0) {
+          $bid->updateAll(['status' => 1], ['bid' => $bid->bid]);
+          unset($session['usershiphp']);
+          unset($session['bothp']);
           unset($log);
           unset($battleid);
           $player->updateCounters(['lose' => 1]);
           $player->updateAll(['battle_id' => 0], ['id' => Yii::$app->user->id]);
           Controller::redirect('combat/lose');
-      } elseif ($bothp <= 0) {
-          unset($userhp);
-          unset($bothp);
+      } elseif ($session['bothp'] <= 0) {
+          $bid->updateAll(['status' => 1], ['bid' => $bid->bid]);
+          unset($session['usershiphp']);
+          unset($session['bothp']);
           unset($log);
           unset($battleid);
           $ship->updateCounters(['exp' => $this->expirence($ship->ship_id)]);
@@ -84,7 +91,7 @@ class Combat extends Object
           Controller::redirect('combat/win');
       }
 
-      return [$ship, $player, $log];
+      return [$session['usershiphp'], $session['bothp'], $ship, $player];
 
   }
 
@@ -149,6 +156,9 @@ class Combat extends Object
      */
   public function writeLog($bid, $pdmg)
   {
+      //$sql = "UPDATE `battles` SET `logs` = CONCAT(`logs`,'".$pdmg."') WHERE `bid` = $bid";
+      //$battles = Battles::findBySql($sql)->all();
+
       $battleid = Battles::findOne(['bid' => $bid]);
       $battleid->updateAll(['logs' => new \yii\db\Expression("CONCAT('".$pdmg."')")], ['bid' => $bid]);
   }
