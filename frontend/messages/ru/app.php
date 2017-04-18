@@ -51,6 +51,16 @@ return [
     'Battle Ship Combat Begin' => 'Великая битва кораблей началась',
     'Top Rank users' => 'Лучшие игроки',
     'Battle Shop' => 'Магазин кораблей',
+    'Shop' => 'Магазин',
+    //
+    'Start battle' => 'Начать бой',
+    'Reg Battle' => 'Вступить в бой',
+    'Go Battle' => 'Вступить в бой',
+    'You attacked the bot warship on -' => 'Вы нанесли урон вражескому кораблю на -',
+    'Our warship were attacked by bot warship on -' => 'Ваш корабль был атакован на -',
+    'Congratulations, You are Win' => 'Поздравляем, победа за Вами',
+    'Go Port' => 'Перейти в порт',
+    'Unfortunately' => 'К сожалению, Вы проиграли',
     //
     'Powered by {yii}' => 'Работает на {yii}',
     'Unknown alias: -{name}' => 'Неизвестный псевдоним: -{name}',
