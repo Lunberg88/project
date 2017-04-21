@@ -436,3 +436,9 @@ a.desc:after {
     background: #428bca;
     border-color: #428bca;
 }
+
+.dock {
+    height: 100%;
+    width: 100%;
+    background: url('../img/dock_bg.jpg') no-repeat;
+}

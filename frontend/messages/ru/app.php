@@ -52,7 +52,7 @@ return [
     'Top Rank users' => 'Лучшие игроки',
     'Battle Shop' => 'Магазин кораблей',
     'Shop' => 'Магазин',
-    //
+    // Battle
     'Start battle' => 'Начать бой',
     'Reg Battle' => 'Вступить в бой',
     'Go Battle' => 'Вступить в бой',
@@ -61,7 +61,20 @@ return [
     'Congratulations, You are Win' => 'Поздравляем, победа за Вами',
     'Go Port' => 'Перейти в порт',
     'Unfortunately' => 'К сожалению, Вы проиграли',
-    //
+    // Auth
+    'Auth' => 'Авторизация',
+    'Login' => 'Войти',
+    'username' => 'Имя пользователя',
+    'password' => 'Пароль',
+    'rememberMe' => 'Запомнить меня',
+    'reset it' => 'сбросить',
+    'Please fill out the following fields to login' => 'Пожалуйста, заполните следующие поля',
+    'If you forgot your password you can' => 'Если Вы забилы свой пароль, нажмите здесь',
+    // Signup
+    'Signup' => 'Зарегистрировать',
+    'Please fill out the following fields to signup' => 'Пожалуйста заполните следующие поля для регистрации',
+    'Reg' => 'Регистрация',
+    // Others
     'Powered by {yii}' => 'Работает на {yii}',
     'Unknown alias: -{name}' => 'Неизвестный псевдоним: -{name}',
     'Yii Framework' => 'Yii Framework',
